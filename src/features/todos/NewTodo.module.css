@@ -1,0 +1,17 @@
+.form-control {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-control input {
+  width: 500px;
+  padding: 10px;
+  outline: none;
+}
+
+.form-control textarea {
+  width: 500px;
+  padding: 10px;
+  resize: none;
+  outline: none;
+}

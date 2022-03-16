@@ -1,0 +1,28 @@
+title: Задача
+type: object
+x-tags:
+  - Заметка
+description: Сущность задачи на платформе
+properties:
+  id:
+    type: string
+    format: uuid
+    description: ID задачи
+  title:
+    type: string
+    minLength: 2
+    description: Заголовок задачи
+    x-faker: commerce.productName
+  description:
+    type: string
+    description: Описание задачи
+    x-faker: commerce.productDescription
+    minLength: 5
+  completed:
+    type: boolean
+    default: false
+    description: Задача завершена
+required:
+  - title
+  - description
+  - completed

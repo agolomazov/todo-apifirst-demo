@@ -1,0 +1,43 @@
+.container {
+  padding: 0 30px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  max-width: 600px;
+  padding: 15px 10px;
+}
+
+.checkbox {
+  float: left;
+  position: relative;
+  top: 2px;
+  margin-right: 10px;
+}
+
+.container p {
+  margin: 0;
+  padding: 0;
+}
+
+.container .title {
+  font-weight: 500;
+}
+
+.container .description {
+  font-style: italic;
+}
+
+.container :checked + .title,
+.container :checked + .title + .description {
+  text-decoration: line-through;
+}
+
+.remove {
+  text-align: right;
+}
+
+.remove button {
+  background-color: #cc3300;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+}
