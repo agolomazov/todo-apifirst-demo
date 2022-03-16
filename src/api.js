@@ -18,4 +18,8 @@ export class BaseAPI {
   async remove(endpoint, config) {
     return await axios.delete(`${this.baseApi}/${endpoint}`, config);
   }
+
+  async update(endpoint, data, config) {
+    return await axios.put(`${this.baseApi}/${endpoint}`, data, config);
+  }
 }

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/too
 import { todoAPI } from './api';
 
 const todoAdapter = createEntityAdapter({
-  selectId: (todo) => todo.todoID,
+  selectId: (todo) => todo.id,
 });
 
 export const loadTodos = createAsyncThunk(
@@ -38,6 +38,22 @@ export const removeTodo = createAsyncThunk(
   }
 );
 
+export const toggleTodo = createAsyncThunk(
+  '@@todos/toggle-todo',
+  async (todo, { rejectWithValue }) => {
+    try {
+      const newTodo = {
+        ...todo,
+        completed: !todo.completed
+      };
+      await todoAPI.updateTodo(newTodo);
+      return newTodo;
+    } catch (error) {
+      return rejectWithValue('Ошибка при обновлении задачи');
+    }
+  }
+);
+
 const todosSlice = createSlice({
   name: 'todos',
   initialState: todoAdapter.getInitialState({
@@ -55,6 +71,14 @@ const todosSlice = createSlice({
       })
       .addCase(removeTodo.fulfilled, (state, action) => {
         todoAdapter.removeOne(state, action.payload.id);
+      })
+      .addCase(toggleTodo.fulfilled, (state, action) => {
+        todoAdapter.updateOne(state, {
+          id: action.payload.id,
+          changes: {
+            completed: action.payload.completed
+          }
+        });
       })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),

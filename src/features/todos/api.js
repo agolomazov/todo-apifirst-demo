@@ -27,6 +27,15 @@ class TodoAPI extends BaseAPI {
       console.log(error);
     }
   }
+
+  async updateTodo(todo) {
+    try {
+      const todosResponse = await this.update(`todos/${todo.id}`, todo);
+      return todosResponse.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export const todoAPI = new TodoAPI();

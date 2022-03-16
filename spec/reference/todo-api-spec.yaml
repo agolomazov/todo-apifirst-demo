@@ -113,7 +113,7 @@ components:
         - Заметка
       description: Сущность задачи на платформе
       properties:
-        todoID:
+        id:
           type: string
           format: uuid
           description: ID задачи
